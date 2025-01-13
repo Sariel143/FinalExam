@@ -14,16 +14,28 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f0b5e0, #b4f0e0);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             color: #444;
+            background-color: #000;
+            overflow: hidden; /* Hide any overflowing content */
+        }
+
+        /* Rain effect */
+        #rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.9); /* Light transparent background */
             width: 100%;
             max-width: 450px;
             padding: 30px;
@@ -31,6 +43,7 @@
             border-radius: 20px;
             text-align: center;
             font-family: 'Poppins', sans-serif;
+            z-index: 1;
         }
 
         h2 {
@@ -98,6 +111,9 @@
     </style>
 </head>
 <body>
+    <!-- Rain Effect Canvas -->
+    <canvas id="rain"></canvas>
+
     <div class="container">
         <h2>Welcome to Your Dashboard</h2>
 
@@ -112,7 +128,59 @@
         </div>
     </div>
 
-    <!-- Firebase Authentication and Session Management -->
+    <script>
+        // Rain effect setup
+        const canvas = document.getElementById('rain');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Raindrop class
+        class Raindrop {
+            constructor(x, y, length, speed) {
+                this.x = x;
+                this.y = y;
+                this.length = length;
+                this.speed = speed;
+            }
+
+            // Draw the raindrop
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.strokeStyle = 'rgba(174, 194, 224, 0.6)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+
+            // Update the raindrop's position
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = -this.length;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        // Create raindrops
+        const raindrops = [];
+        for (let i = 0; i < 100; i++) {
+            raindrops.push(new Raindrop(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 20 + 10, Math.random() * 3 + 2));
+        }
+
+        // Animate rain
+        function animateRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            raindrops.forEach(raindrop => raindrop.update());
+            requestAnimationFrame(animateRain);
+        }
+
+        animateRain();
+    </script>
+
     <script type="module" src="userdashboard.js"></script>
 </body>
 </html>
