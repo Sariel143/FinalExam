@@ -13,38 +13,48 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: peachpuff;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0b5e0, #b4f0e0);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #333;
+            color: #444;
         }
 
         .container {
-            background: beige;
-            width: 400px;
-            padding: 20px 30px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
             text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         h2 {
-            color: brown;
-            font-size: 24px;
+            font-size: 28px;
+            color: #6a1b9a;
             margin-bottom: 20px;
+            font-weight: 600;
         }
 
         p {
-            font-size: 16px;
+            font-size: 18px;
             margin: 15px 0;
-            color: brown;
+            color: #333;
+            font-weight: 500;
         }
 
         strong {
-            color: burlywood;
+            color: #b86b8a;
+        }
+
+        .actions {
+            margin-top: 25px;
+            border-top: 2px solid #ddd;
+            padding-top: 15px;
         }
 
         ul {
@@ -54,25 +64,36 @@
         }
 
         ul li {
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
         ul li a {
             text-decoration: none;
-            color: brown;
-            font-size: 16px;
-            font-weight: bold;
+            color: #6a1b9a;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         ul li a:hover {
-            color: burlywood;
+            color: #b86b8a;
             text-decoration: underline;
+            transform: scale(1.05);
         }
 
-        .actions {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
+        .actions a {
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: #6a1b9a;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .actions a:hover {
+            background-color: #b86b8a;
+            transform: scale(1.05);
         }
     </style>
 </head>
